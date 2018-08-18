@@ -34,6 +34,11 @@ global.dir = 0;
 collision_speed = Speed + 1;
 souls = 0;
 able = 1;
+
+if global.X != 0 &amp;&amp; room = global.rm &amp;&amp; global.Y != 0 {
+x = global.X;
+y = global.Y;
+}
 </string>
           </argument>
         </arguments>
@@ -190,7 +195,7 @@ alarm[0] = 100;
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_soul">
+    <event eventtype="4" ename="obj_teleport">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -207,11 +212,7 @@ alarm[0] = 100;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>able = 1
-souls += 1;
-if souls &gt; 30 &amp;&amp; able = 1{
-able = 0;
-}
+            <string>room_goto_next();
 </string>
           </argument>
         </arguments>
@@ -262,6 +263,61 @@ able = 0;
           <argument>
             <kind>4</kind>
             <string>1</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_soul">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>able = 1
+souls += 1;
+if souls &gt; 30 &amp;&amp; able = 1{
+able = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ini_open("Save.ini");
+ini_write_real ("Save", "Room", room);
+ini_write_real ("Save", "X", x);
+ini_write_real ("Save", "Y", y);
+ini_close();
+
+</string>
           </argument>
         </arguments>
       </action>
