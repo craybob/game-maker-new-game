@@ -3,7 +3,9 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\39dll Extension</extension>
+  </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="new hero">
@@ -11,6 +13,12 @@
       <sprite>sprites\player_move_up</sprite>
       <sprite>sprites\player_move_right</sprite>
       <sprite>sprites\player_move_left</sprite>
+      <sprites name="attack">
+        <sprite>sprites\player_attack_down</sprite>
+        <sprite>sprites\player_attack_right</sprite>
+        <sprite>sprites\player_attack_left</sprite>
+        <sprite>sprites\player_attack_up</sprite>
+      </sprites>
     </sprites>
     <sprites name="damage_ball">
       <sprite>sprites\player_up_attack</sprite>
@@ -19,7 +27,6 @@
       <sprite>sprites\player_left_attack</sprite>
     </sprites>
     <sprite>sprites\wall</sprite>
-    <sprite>sprites\enemy</sprite>
     <sprite>sprites\spawn</sprite>
     <sprites name="bullet">
       <sprite>sprites\bullet</sprite>
@@ -33,6 +40,12 @@
       <sprite>sprites\spr_continue</sprite>
     </sprites>
     <sprite>sprites\spr_teleport</sprite>
+    <sprites name="enemy">
+      <sprite>sprites\enemy_move_down</sprite>
+      <sprite>sprites\enemy_move_right</sprite>
+      <sprite>sprites\enemy_move_up</sprite>
+      <sprite>sprites\enemy_move_left</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>

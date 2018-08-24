@@ -30,15 +30,39 @@ hp = 100;
 image_speed = 0;
 attack = 0;
 move = 0;
-global.dir = 0;
+global.dir = 270;
 collision_speed = Speed + 1;
 souls = 0;
-able = 1;
+hurt = 0;
+soldiers = 1;
 
 if global.X != 0 &amp;&amp; room = global.rm &amp;&amp; global.Y != 0 {
 x = global.X;
 y = global.Y;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>hurt = 0;
 </string>
           </argument>
         </arguments>
@@ -61,7 +85,9 @@ y = global.Y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>able = 1;
+            <string>attack = 0;
+move = 0;
+soldiers = 1;
 </string>
           </argument>
         </arguments>
@@ -96,28 +122,28 @@ var right_move = (keyboard_check(ord("D")))
 var left_move = (keyboard_check(ord("A")))
 
 
-if (up_move &amp;&amp; place_free(x,y-Speed)){
+if (up_move ){
 y -= Speed;
 sprite_index = player_move_up
 global.dir = 90;
 image_speed = 1/5;
 move = 1;
 }
-if(left_move &amp;&amp; place_free(x-Speed,y)){
+if(left_move ){
 x -=Speed;
 sprite_index = player_move_left
 image_speed = 1/5;
 global.dir = 180;
 move = 1;
 }
-if(down_move &amp;&amp; place_free(x,y+Speed)){
+if(down_move ){
 y += Speed;
 sprite_index = player_move_down
 image_speed = 1/5;
 global.dir = 270;
 move = 1;
 }
-if(right_move &amp;&amp; place_free(x+Speed,y)){
+if(right_move ){
 x += Speed;
 sprite_index = player_move_right
 image_speed = 1/5;
@@ -131,56 +157,57 @@ image_index = 0;
 move = 0;
 }
 //!attack_sprite
-if (keyboard_check_pressed(ord("K")) &amp;&amp; attack = 0){
+if (keyboard_check_pressed(ord("K")) &amp;&amp; move = 0){
 var damage = instance_create(x,y,obj_damage_ball)
 image_speed = 1
 attack = 1;
-move = 0;
+move = 1;
 }
 
 if attack = 1 {
-if sprite_index = player_move_up{
+if  sprite_index = player_move_up{
+sprite_index = player_attack_up
 with(obj_damage_ball)
 sprite_index = player_up_attack
 }
-if sprite_index = player_move_down{
+if  sprite_index = player_move_down{
+sprite_index = player_attack_down
 with(obj_damage_ball)
 sprite_index = player_down_attack
 }
 if sprite_index = player_move_left{
+sprite_index = player_attack_left
 with(obj_damage_ball)
 sprite_index = player_left_attack
 }
 if sprite_index = player_move_right{
+sprite_index = player_attack_right
 with(obj_damage_ball)
 sprite_index = player_right_attack
 }
+alarm[0] = 5;
 attack = 0;
 }
 //range attack
-if (keyboard_check_pressed(ord("L")) &amp;&amp; attack = 0 &amp;&amp; able = 1){
+if (keyboard_check_pressed(ord("L"))){
 var damage = instance_create(x,y,obj_bullet)
 image_speed = 1
 attack = 1;
 move = 0;
-able = 0;
 alarm[0] = 15;
 }
 
 //creaate soldiers
-if(keyboard_check_pressed(ord("H")) &amp;&amp; souls &gt; 0 &amp;&amp; able = 1 ){
-if (keyboard_check_pressed(ord("H")) &amp;&amp; able = 1 &amp;&amp; souls &lt;= 0 ){
-instance_create(x,y,obj_soldier)
-able = 0;
-}
+if(keyboard_check_pressed(ord("H")) &amp;&amp; souls &gt; 0 &amp;&amp; soldiers = 1 ){
+
 instance_create(x,y,obj_soldier)
 alarm [0] = 10;
-able = 0;
+soldiers = 0;
 souls -= 1;
 }
 
 //special attack 
-if (keyboard_check_pressed(ord("G")) &amp;&amp; attack = 0 &amp;&amp; able = 1){
+if (keyboard_check_pressed(ord("G")) &amp;&amp; attack = 0){
 instance_create(x,y,obj_spell)
 image_speed = 1
 attack = 1;
@@ -236,6 +263,8 @@ alarm[0] = 100;
           <argument>
             <kind>1</kind>
             <string>hp -= 2;
+hurt = 1
+alarm[1] = 15;
 </string>
           </argument>
         </arguments>
@@ -288,6 +317,7 @@ alarm[0] = 100;
 souls += 1;
 if souls &gt; 30 &amp;&amp; able = 1{
 able = 0;
+souls = 30;
 }
 </string>
           </argument>
