@@ -19,6 +19,7 @@
         <sprite>sprites\player_attack_left</sprite>
         <sprite>sprites\player_attack_up</sprite>
       </sprites>
+      <sprite>sprites\PLAYER</sprite>
     </sprites>
     <sprites name="damage_ball">
       <sprite>sprites\player_up_attack</sprite>
@@ -32,7 +33,6 @@
       <sprite>sprites\bullet</sprite>
     </sprites>
     <sprite>sprites\soul</sprite>
-    <sprite>sprites\soldier</sprite>
     <sprite>sprites\spell_attack</sprite>
     <sprites name="menu">
       <sprite>sprites\game_exit</sprite>
@@ -46,8 +46,19 @@
       <sprite>sprites\enemy_move_up</sprite>
       <sprite>sprites\enemy_move_left</sprite>
     </sprites>
+    <sprites name="enemy shoter">
+      <sprite>sprites\slither_move_left</sprite>
+    </sprites>
+    <sprites name="soldier">
+      <sprite>sprites\soldier_move_down</sprite>
+      <sprite>sprites\soldier_move_up</sprite>
+      <sprite>sprites\soldier_move_right</sprite>
+      <sprite>sprites\soldier_move_left</sprite>
+    </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <objects name="some_thing">
@@ -55,7 +66,6 @@
       <object>objects\obj_spell_attack</object>
       <object>objects\obj_spell</object>
       <object>objects\obj_main</object>
-      <object>objects\obj_soldier</object>
       <object>objects\obj_damage_ball</object>
       <object>objects\obj_soul</object>
       <object>objects\obj_spawn</object>
@@ -64,6 +74,7 @@
       <object>objects\obj_wall</object>
       <object>objects\obj_player</object>
       <object>objects\obj_enemy</object>
+      <object>objects\obj_soldier</object>
     </objects>
     <objects name="obj_menu">
       <object>objects\obj_ext</object>
